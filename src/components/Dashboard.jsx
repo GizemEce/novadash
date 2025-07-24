@@ -1,6 +1,10 @@
-import React from 'react'
-import Card from './Card'
-import { FaBox, FaShoppingCart, FaCog, FaUsers } from 'react-icons/fa'
+import React from 'react';
+import Card from './Card';
+import { FaBox, FaShoppingCart, FaCog, FaUsers } from 'react-icons/fa';
+import { dataLine, dataBar } from '../assets/chartData';
+import { Line, Bar} from 'react-chartjs-2';
+import { Chart as ChartJS, LineElement, BarElement, CategoryScale, LinearScale, PointElement } from 'chart.js';
+ChartJS.register(LineElement, BarElement, CategoryScale, LinearScale, PointElement);
 
 const Dashboard = () => {
 
@@ -40,6 +44,17 @@ const Dashboard = () => {
                         value={item.value}
                     />
                 ))}
+            </div>
+
+            <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
+                <div className='bg-white p-4 dark:bg-gray-800 rounded-lg shadow-md'>
+                    <h3 className='text-lg font-semibold mb-4'>Sales Data</h3>
+                    <Line data={dataLine}/>
+                </div >
+                <div className='bg-white p-4 dark:bg-gray-800 rounded-lg shadow-md'>
+                    <h3>Product Data</h3>
+                    <Line data={dataBar}/>
+                </div>
             </div>
         </div>
     )
